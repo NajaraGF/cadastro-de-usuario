@@ -66,6 +66,7 @@
         .form-group .error {
             color: red;
             font-size: 12px;
+            display: none;
         }
 
         button {
@@ -98,6 +99,7 @@
             <div class="form-group">
                 <label for="name">Nome Completo</label>
                 <input type="text" id="name" name="name" required>
+                <p id="nameError" class="error">O campo Nome Completo é obrigatório.</p>
             </div>
 
             <div class="form-group">
@@ -106,36 +108,43 @@
                     <input type="radio" id="genderMasculino" name="gender" value="Masculino" required> <label for="genderMasculino">Masculino</label>
                     <input type="radio" id="genderFeminino" name="gender" value="Feminino" required> <label for="genderFeminino">Feminino</label>
                 </div>
+                <p id="genderError" class="error">Selecione uma opção de sexo.</p>
             </div>
 
             <div class="form-group">
                 <label for="birthdate">Data de Nascimento</label>
                 <input type="date" id="birthdate" name="birthdate" required>
+                <p id="birthdateError" class="error">O campo Data de Nascimento é obrigatório.</p>
             </div>
 
             <div class="form-group">
                 <label for="cep">CEP</label>
                 <input type="text" id="cep" name="cep" maxlength="8" required>
+                <p id="cepError" class="error">O campo CEP é obrigatório.</p>
             </div>
 
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" required>
+                <p id="emailError" class="error">O campo E-mail é obrigatório.</p>
             </div>
 
             <div class="form-group">
                 <label for="confirmEmail">Confirme o E-mail</label>
                 <input type="email" id="confirmEmail" name="confirmEmail" required>
+                <p id="confirmEmailError" class="error">Os e-mails não coincidem.</p>
             </div>
 
             <div class="form-group">
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" required>
+                <p id="passwordError" class="error">A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula e um número.</p>
             </div>
 
             <div class="form-group">
                 <label for="confirmPassword">Confirme a Senha</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <p id="confirmPasswordError" class="error">As senhas não coincidem.</p>
             </div>
 
             <button type="submit" id="submitButton">Confirmar cadastro</button>
@@ -149,32 +158,94 @@
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
+            let hasError = false;
 
-            const name = document.getElementById('name').value.trim();
-            const birthdate = document.getElementById('birthdate').value;
-            const cep = document.getElementById('cep').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const confirmEmail = document.getElementById('confirmEmail').value.trim();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
+            const name = document.getElementById('name');
+            const nameError = document.getElementById('nameError');
+            const genderMasculino = document.getElementById('genderMasculino');
+            const genderFeminino = document.getElementById('genderFeminino');
+            const genderError = document.getElementById('genderError');
+            const birthdate = document.getElementById('birthdate');
+            const birthdateError = document.getElementById('birthdateError');
+            const cep = document.getElementById('cep');
+            const cepError = document.getElementById('cepError');
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const confirmEmail = document.getElementById('confirmEmail');
+            const confirmEmailError = document.getElementById('confirmEmailError');
+            const password = document.getElementById('password');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
 
-            if (!validatePassword(password)) {
-                alert('A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula e um número.');
-                return;
+            // Validar Nome Completo
+            if (name.value.trim() === '') {
+                nameError.style.display = 'block';
+                hasError = true;
+            } else {
+                nameError.style.display = 'none';
             }
 
-            if (email !== confirmEmail) {
-                alert('Os e-mails não coincidem.');
-                return;
+            // Validar Sexo
+            if (!genderMasculino.checked && !genderFeminino.checked) {
+                genderError.style.display = 'block';
+                hasError = true;
+            } else {
+                genderError.style.display = 'none';
             }
 
-            if (password !== confirmPassword) {
-                alert('As senhas não coincidem.');
-                return;
+            // Validar Data de Nascimento
+            if (birthdate.value === '') {
+                birthdateError.style.display = 'block';
+                hasError = true;
+            } else {
+                birthdateError.style.display = 'none';
             }
 
-            // Exibe mensagem de sucesso
-            successMessage.style.display = 'block';
+            // Validar CEP
+            if (cep.value.trim() === '') {
+                cepError.style.display = 'block';
+                hasError = true;
+            } else {
+                cepError.style.display = 'none';
+            }
+
+            // Validar E-mail
+            if (email.value.trim() === '') {
+                emailError.style.display = 'block';
+                hasError = true;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Validar Confirmação de E-mail
+            if (email.value !== confirmEmail.value) {
+                confirmEmailError.style.display = 'block';
+                hasError = true;
+            } else {
+                confirmEmailError.style.display = 'none';
+            }
+
+            // Validar Senha
+            if (!validatePassword(password.value)) {
+                passwordError.style.display = 'block';
+                hasError = true;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            // Validar Confirmação de Senha
+            if (password.value !== confirmPassword.value) {
+                confirmPasswordError.style.display = 'block';
+                hasError = true;
+            } else {
+                confirmPasswordError.style.display = 'none';
+            }
+
+            // Exibir mensagem de sucesso se não houver erros
+            if (!hasError) {
+                successMessage.style.display = 'block';
+            }
         });
 
         function validatePassword(password) {
