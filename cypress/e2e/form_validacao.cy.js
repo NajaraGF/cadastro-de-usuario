@@ -18,15 +18,15 @@ describe('Validação de Campos Obrigatórios', () => {
       .and('contain', 'Selecione uma opção de sexo.');
 
     cy.get('#birthdateError')
-      //.should('be.visible')
+      .should('be.visible')
       .and('contain', 'O campo Data de Nascimento é obrigatório.');
 
     cy.get('#cepError')
-      //.should('be.visible')
+      .should('be.visible')
       .and('contain', 'O campo CEP é obrigatório.');
 
     cy.get('#emailError')
-     // .should('be.visible')
+     .should('be.visible')
       .and('contain', 'O campo E-mail é obrigatório.');
   });
 });
