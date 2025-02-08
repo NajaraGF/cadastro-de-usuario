@@ -5,150 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .container h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .container p {
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #666;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .form-group-inline {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        input[type="radio"] {
-            margin-right: 5px;
-        }
-
-        .form-group .error {
-            color: red;
-            font-size: 12px;
-            display: none;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .success {
-            color: green;
-            font-size: 14px;
-            margin-top: 20px;
-            display: none;
-        }
+        /* Adicione aqui os estilos do formulário */
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cadastro</h1>
-        <p>Preencha os campos abaixo para completar seu cadastro, é grátis!</p>
-        <form id="registerForm">
+        <!-- Conteúdo do formulário -->
+        <form id="registerForm" novalidate>
             <div class="form-group">
                 <label for="name">Nome Completo</label>
                 <input type="text" id="name" name="name" required>
-                <p id="nameError" class="error">O campo Nome Completo é obrigatório.</p>
+                <p id="nameError" class="error" style="display: none;">O campo Nome Completo é obrigatório.</p>
             </div>
-
-            <div class="form-group">
-                <label>Sexo</label>
-                <div class="form-group-inline">
-                    <input type="radio" id="genderMasculino" name="gender" value="Masculino" required> <label for="genderMasculino">Masculino</label>
-                    <input type="radio" id="genderFeminino" name="gender" value="Feminino" required> <label for="genderFeminino">Feminino</label>
-                </div>
-                <p id="genderError" class="error">Selecione uma opção de sexo.</p>
-            </div>
-
-            <div class="form-group">
-                <label for="birthdate">Data de Nascimento</label>
-                <input type="date" id="birthdate" name="birthdate" required>
-                <p id="birthdateError" class="error">O campo Data de Nascimento é obrigatório.</p>
-            </div>
-
-            <div class="form-group">
-                <label for="cep">CEP</label>
-                <input type="text" id="cep" name="cep" maxlength="8" required>
-                <p id="cepError" class="error">O campo CEP é obrigatório.</p>
-            </div>
-
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required>
-                <p id="emailError" class="error">O campo E-mail é obrigatório.</p>
-            </div>
-
-            <div class="form-group">
-                <label for="confirmEmail">Confirme o E-mail</label>
-                <input type="email" id="confirmEmail" name="confirmEmail" required>
-                <p id="confirmEmailError" class="error">Os e-mails não coincidem.</p>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" required>
-                <p id="passwordError" class="error">A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula e um número.</p>
-            </div>
-
-            <div class="form-group">
-                <label for="confirmPassword">Confirme a Senha</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-                <p id="confirmPasswordError" class="error">As senhas não coincidem.</p>
-            </div>
-
+            <!-- Outros campos do formulário -->
             <button type="submit" id="submitButton">Confirmar cadastro</button>
-            <p class="success" id="successMessage">Cadastro realizado com sucesso!</p>
+            <p class="success" id="successMessage" style="display: none;">Cadastro realizado com sucesso!</p>
         </form>
     </div>
 
@@ -157,7 +28,8 @@
         const successMessage = document.getElementById('successMessage');
 
         form.addEventListener('submit', function (e) {
-            e.preventDefault();
+            e.preventDefault(); // Impede o envio padrão do formulário
+
             let hasError = false;
 
             const name = document.getElementById('name');
@@ -218,40 +90,11 @@
                 emailError.style.display = 'none';
             }
 
-            // Validar Confirmação de E-mail
-            if (email.value !== confirmEmail.value) {
-                confirmEmailError.style.display = 'block';
-                hasError = true;
-            } else {
-                confirmEmailError.style.display = 'none';
-            }
-
-            // Validar Senha
-            if (!validatePassword(password.value)) {
-                passwordError.style.display = 'block';
-                hasError = true;
-            } else {
-                passwordError.style.display = 'none';
-            }
-
-            // Validar Confirmação de Senha
-            if (password.value !== confirmPassword.value) {
-                confirmPasswordError.style.display = 'block';
-                hasError = true;
-            } else {
-                confirmPasswordError.style.display = 'none';
-            }
-
-            // Exibir mensagem de sucesso se não houver erros
+            // Exibir mensagens personalizadas para validações específicas
             if (!hasError) {
                 successMessage.style.display = 'block';
             }
         });
-
-        function validatePassword(password) {
-            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-            return passwordRegex.test(password);
-        }
     </script>
 </body>
 </html>
