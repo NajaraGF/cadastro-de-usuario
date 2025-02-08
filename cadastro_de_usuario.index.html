@@ -5,21 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
     <style>
-        /* Adicione aqui os estilos do formulário */
+        .error {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+        .success {
+            color: green;
+            font-size: 14px;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Conteúdo do formulário -->
+        <h1>Cadastro de Usuário</h1>
         <form id="registerForm" novalidate>
             <div class="form-group">
                 <label for="name">Nome Completo</label>
-                <input type="text" id="name" name="name" required>
-                <p id="nameError" class="error" style="display: none;">O campo Nome Completo é obrigatório.</p>
+                <input type="text" id="name" name="name">
+                <p id="nameError" class="error">O campo Nome Completo é obrigatório.</p>
             </div>
-            <!-- Outros campos do formulário -->
+
+            <div class="form-group">
+                <label>Sexo</label>
+                <input type="radio" id="genderMasculino" name="gender" value="Masculino">
+                <label for="genderMasculino">Masculino</label>
+                <input type="radio" id="genderFeminino" name="gender" value="Feminino">
+                <label for="genderFeminino">Feminino</label>
+                <p id="genderError" class="error">Selecione uma opção de sexo.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">Data de Nascimento</label>
+                <input type="date" id="birthdate" name="birthdate">
+                <p id="birthdateError" class="error">O campo Data de Nascimento é obrigatório.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" name="cep">
+                <p id="cepError" class="error">O campo CEP é obrigatório.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email">
+                <p id="emailError" class="error">O campo E-mail é obrigatório.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmEmail">Confirme o E-mail</label>
+                <input type="email" id="confirmEmail" name="confirmEmail">
+                <p id="confirmEmailError" class="error">Os e-mails não coincidem.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password">
+                <p id="passwordError" class="error">A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula e um número.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirme a Senha</label>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+                <p id="confirmPasswordError" class="error">As senhas não coincidem.</p>
+            </div>
+
             <button type="submit" id="submitButton">Confirmar cadastro</button>
-            <p class="success" id="successMessage" style="display: none;">Cadastro realizado com sucesso!</p>
+            <p id="successMessage" class="success">Cadastro realizado com sucesso!</p>
         </form>
     </div>
 
@@ -28,73 +82,11 @@
         const successMessage = document.getElementById('successMessage');
 
         form.addEventListener('submit', function (e) {
-            e.preventDefault(); // Impede o envio padrão do formulário
+            e.preventDefault();
 
             let hasError = false;
 
             const name = document.getElementById('name');
             const nameError = document.getElementById('nameError');
             const genderMasculino = document.getElementById('genderMasculino');
-            const genderFeminino = document.getElementById('genderFeminino');
-            const genderError = document.getElementById('genderError');
-            const birthdate = document.getElementById('birthdate');
-            const birthdateError = document.getElementById('birthdateError');
-            const cep = document.getElementById('cep');
-            const cepError = document.getElementById('cepError');
-            const email = document.getElementById('email');
-            const emailError = document.getElementById('emailError');
-            const confirmEmail = document.getElementById('confirmEmail');
-            const confirmEmailError = document.getElementById('confirmEmailError');
-            const password = document.getElementById('password');
-            const passwordError = document.getElementById('passwordError');
-            const confirmPassword = document.getElementById('confirmPassword');
-            const confirmPasswordError = document.getElementById('confirmPasswordError');
-
-            // Validar Nome Completo
-            if (name.value.trim() === '') {
-                nameError.style.display = 'block';
-                hasError = true;
-            } else {
-                nameError.style.display = 'none';
-            }
-
-            // Validar Sexo
-            if (!genderMasculino.checked && !genderFeminino.checked) {
-                genderError.style.display = 'block';
-                hasError = true;
-            } else {
-                genderError.style.display = 'none';
-            }
-
-            // Validar Data de Nascimento
-            if (birthdate.value === '') {
-                birthdateError.style.display = 'block';
-                hasError = true;
-            } else {
-                birthdateError.style.display = 'none';
-            }
-
-            // Validar CEP
-            if (cep.value.trim() === '') {
-                cepError.style.display = 'block';
-                hasError = true;
-            } else {
-                cepError.style.display = 'none';
-            }
-
-            // Validar E-mail
-            if (email.value.trim() === '') {
-                emailError.style.display = 'block';
-                hasError = true;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            // Exibir mensagens personalizadas para validações específicas
-            if (!hasError) {
-                successMessage.style.display = 'block';
-            }
-        });
-    </script>
-</body>
-</html>
+            const genderFeminino = document.get
