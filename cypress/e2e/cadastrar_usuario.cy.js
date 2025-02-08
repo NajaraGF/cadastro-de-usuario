@@ -1,7 +1,7 @@
 describe('Cadastro de Usuário', () => {
   beforeEach(() => {
     // Substitua pelo caminho correto do formulário HTML
-    cy.visit('caminho/para/seu/arquivo.html');
+    cy.visit('http://127.0.0.1:5500/cadastro_de_usuario.index.html');
   });
 
   it('Cadastro bem-sucedido do usuário', () => {
