@@ -3,23 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastro</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .form-group-inline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
         .error {
             color: red;
             font-size: 12px;
             display: none;
         }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
         .success {
             color: green;
             font-size: 14px;
             display: none;
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cadastro de Usuário</h1>
+        <h1>Cadastro</h1>
+        <p>Preencha os campos abaixo para completar seu cadastro, é grátis!</p>
         <form id="registerForm" novalidate>
             <div class="form-group">
                 <label for="name">Nome Completo</label>
@@ -29,10 +109,12 @@
 
             <div class="form-group">
                 <label>Sexo</label>
-                <input type="radio" id="genderMasculino" name="gender" value="Masculino">
-                <label for="genderMasculino">Masculino</label>
-                <input type="radio" id="genderFeminino" name="gender" value="Feminino">
-                <label for="genderFeminino">Feminino</label>
+                <div class="form-group-inline">
+                    <input type="radio" id="genderMasculino" name="gender" value="Masculino">
+                    <label for="genderMasculino">Masculino</label>
+                    <input type="radio" id="genderFeminino" name="gender" value="Feminino">
+                    <label for="genderFeminino">Feminino</label>
+                </div>
                 <p id="genderError" class="error">Selecione uma opção de sexo.</p>
             </div>
 
