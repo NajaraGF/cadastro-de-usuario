@@ -86,6 +86,7 @@
             color: green;
             font-size: 14px;
             margin-top: 20px;
+            display: none;
         }
     </style>
 </head>
@@ -138,11 +139,13 @@
             </div>
 
             <button type="submit" id="submitButton">Confirmar cadastro</button>
+            <p class="success" id="successMessage">Cadastro realizado com sucesso!</p>
         </form>
     </div>
 
     <script>
         const form = document.getElementById('registerForm');
+        const successMessage = document.getElementById('successMessage');
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -170,8 +173,8 @@
                 return;
             }
 
-            // Exibe mensagem de sucesso em um popup
-            alert('Cadastro realizado com sucesso!');
+            // Exibe mensagem de sucesso
+            successMessage.style.display = 'block';
         });
 
         function validatePassword(password) {
