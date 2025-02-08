@@ -1,7 +1,7 @@
 describe('Cadastro de Usuário', () => {
   beforeEach(() => {
-    // Substitua pelo caminho correto do formulário HTML
-    cy.visit('http://127.0.0.1:5500/cadastro_de_usuario.index.html');
+
+    cy.visit('http://127.0.0.1:8080/cadastro_de_usuario.html');
   });
 
   it('Cadastro bem-sucedido do usuário', () => {
@@ -15,12 +15,10 @@ describe('Cadastro de Usuário', () => {
     cy.get('#password').type('Teste@123');
     cy.get('#confirmPassword').type('Teste@123');
 
-    // Submete o formulário
+    // Submete o formulário e verifica o popup
     cy.get('#submitButton').click();
-
-    // Verifica a mensagem de sucesso
-    cy.get('#successMessage')
-      .should('be.visible')
-      .and('contain', 'Cadastro realizado com sucesso');
+    cy.on('window:alert', (text) => {
+      expect(text).to.equal('Cadastro realizado com sucesso!');
+    });
   });
 });
