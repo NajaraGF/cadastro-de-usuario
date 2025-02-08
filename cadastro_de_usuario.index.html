@@ -89,4 +89,89 @@
             const name = document.getElementById('name');
             const nameError = document.getElementById('nameError');
             const genderMasculino = document.getElementById('genderMasculino');
-            const genderFeminino = document.get
+            const genderFeminino = document.getElementById('genderFeminino');
+            const genderError = document.getElementById('genderError');
+            const birthdate = document.getElementById('birthdate');
+            const birthdateError = document.getElementById('birthdateError');
+            const cep = document.getElementById('cep');
+            const cepError = document.getElementById('cepError');
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const confirmEmail = document.getElementById('confirmEmail');
+            const confirmEmailError = document.getElementById('confirmEmailError');
+            const password = document.getElementById('password');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            // Validar Nome Completo
+            if (name.value.trim() === '') {
+                nameError.style.display = 'block';
+                hasError = true;
+            } else {
+                nameError.style.display = 'none';
+            }
+
+            // Validar Sexo
+            if (!genderMasculino.checked && !genderFeminino.checked) {
+                genderError.style.display = 'block';
+                hasError = true;
+            } else {
+                genderError.style.display = 'none';
+            }
+
+            // Validar Data de Nascimento
+            if (birthdate.value === '') {
+                birthdateError.style.display = 'block';
+                hasError = true;
+            } else {
+                birthdateError.style.display = 'none';
+            }
+
+            // Validar CEP
+            if (cep.value.trim() === '') {
+                cepError.style.display = 'block';
+                hasError = true;
+            } else {
+                cepError.style.display = 'none';
+            }
+
+            // Validar E-mail
+            if (email.value.trim() === '') {
+                emailError.style.display = 'block';
+                hasError = true;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Validar Confirmação de E-mail
+            if (email.value !== confirmEmail.value) {
+                confirmEmailError.style.display = 'block';
+                hasError = true;
+            } else {
+                confirmEmailError.style.display = 'none';
+            }
+
+            // Validar Senha
+            if (password.value.length < 8 || !/[A-Z]/.test(password.value) || !/\d/.test(password.value)) {
+                passwordError.style.display = 'block';
+                hasError = true;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            // Validar Confirmação de Senha
+            if (password.value !== confirmPassword.value) {
+                confirmPasswordError.style.display = 'block';
+                hasError = true;
+            } else {
+                confirmPasswordError.style.display = 'none';
+            }
+
+            if (!hasError) {
+                successMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
