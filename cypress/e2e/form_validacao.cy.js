@@ -9,7 +9,7 @@ describe('Validação de Campos Obrigatórios', () => {
     cy.get('#submitButton').click();
 
     // Verifica se as mensagens de erro são exibidas corretamente
-    cy.get('#name')
+    cy.get('#nameError')
       .should('be.visible')
       .and('contain', 'O campo Nome Completo é obrigatório.');
 
@@ -28,5 +28,9 @@ describe('Validação de Campos Obrigatórios', () => {
     cy.get('#emailError')
      .should('be.visible')
       .and('contain', 'O campo E-mail é obrigatório.');
+
+    cy.get('#passwordError')
+      .should('be.visible')
+      .and('contain', 'A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula e um número.');
   });
 });
