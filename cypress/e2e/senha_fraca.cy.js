@@ -1,38 +1,30 @@
-describe("Validar Cadastro de Usuário - Senha Fraca", () => {
+describe('Validação de Senha Fraca no Cadastro de Usuário', () => {
     beforeEach(() => {
-        cy.visit("https://www.guiademoteis.com.br/sao-paulo");
+      // Substitua pela URL do formulário no servidor local
+      cy.visit('http://127.0.0.1:5500/cadastro_de_usuario.index.html');
     });
-
-    it("Deve exibir erro de validação para senha fraca", () => {
-        cy.get('#showModal')
-        .should('exist') // Verifica que o botão existe no DOM
-        .and('be.visible') // Verifica que o botão está visível
-        .click({ force: true }); // Força o clique no botão
- 
-        
-         
-
-        // Preenche os campos obrigatórios com dados válidos
-        cy.get('#nome').type('Maria Souza');
-        cy.get('#sexo-Feminino').click();
-        cy.get('#DataNascimento').type('28/04/1984');
-        cy.get('#Cep').type('05011-000');
-        cy.get('#email').type('maria@teste.com');
-        cy.get('#ConfEmail').type('maria@teste.com');
-
-        // Preenche o campo 'Senha' com uma senha fraca "12345"
-        cy.get('#Senha').type('12345');
-
-        // Aceita os termos e preferências de email
-        cy.get('#checkbox-descontos-email').check();
-        cy.get('#checkbox-publicidade-email').check();
-        cy.get('#checkbox-privacy').check();
-
-        // Tenta enviar o formulário
-        cy.get('#cadastro input.btCadastrar').click();
-        cy.wait(1000);
-
-        // Valida a mensagem de erro para senha fraca
-        cy.contains("A senha deve ter mínimo 8 caracteres, 1 letra maiúscula e 1 número").should("be.visible");
+  
+    it('Exibe mensagem de erro ao inserir uma senha fraca', () => {
+      // Preenche todos os campos obrigatórios corretamente
+      cy.get('#name').type('Maria Souza');
+      cy.get('#genderFeminino').check();
+      cy.get('#birthdate').type('1984-04-28');
+      cy.get('#cep').type('05011-000');
+      cy.get('#email').type('maria@teste.com');
+      cy.get('#confirmEmail').type('maria@teste.com');
+      cy.get('#password').type('12345'); // Senha fraca
+      cy.get('#confirmPassword').type('12345');
+  
+      // Clica no botão de cadastro
+      cy.get('#submitButton').click();
+  
+      // Verifica a mensagem de erro para senha fraca
+      cy.get('#passwordError')
+        .should('be.visible')
+        .and(
+          'contain',
+          'A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula e um número.'
+        );
     });
-});
+  });
+  
