@@ -3,18 +3,21 @@ Feature: Validar o Cadastro de Usuário
   Eu quero validar o cadastro de usuário,
   Para que eu possa cadastrar um novo usuário no site Guia de Motéis
 
-  Scenario: Digitar e-mails diferentes nos campos de "E-mail" e "Confirmação de E-mail" e exibir erro
+  Scenario: Digitar e-mails diferentes nos campos de "E-mail" e "Confirmação de E-mail"
     Given que o usuário acessa a página inicial
-    When o usuário clica em "login" para acessar o formulário de cadastro
-    And no modal, o usuário clica em "Cadastre-se grátis!"
-    And o usuário preenche o campo "Nome Completo" com "Maria Souza"
-    And o usuário seleciona a opção "Feminino" em "Sexo"
-    And o usuário preenche o campo "Data de Nascimento" com "28/04/1984"
-    And o usuário preenche o campo "CEP" com "05011-000"
-    And o usuário preenche o campo "E-mail" com "maria@teste.com"
-    And o usuário preenche o campo "Confirmação de E-mail" com "maria.diferente@teste.com"
-    And o usuário preenche o campo "Senha" com "Teste@123"
-    And o usuário seleciona os checkboxs de descontos, promoções e publicidade
-    And o usuário seleciona o checkbox de termos de uso e política de privacidade
+    When o usuário clica em "Cadastre-se grátis!" para acessar o formulário de cadastro
+    And o usuário preenche todos os campos obrigatórios corretamente
+      | Campo              | Valor                |
+      | Nome Completo      | Maria Souza          |
+      | Sexo               | Feminino             |
+      | Data de Nascimento | 1984-04-28           |
+      | CEP                | 05011-000            |
+      | E-mail             | maria@teste.com      |
+      | Confirmação E-mail | maria@outroteste.com |
+      | Senha              | Teste@123           |
+      | Confirmação Senha  | Teste@123           |
     And o usuário clica no botão "Confirmar cadastro"
-    Then o usuário visualiza a mensagem de erro "Os e-mails informados não coincidem"
+    Then o usuário visualiza a mensagem de erro:
+      | Campo                  | Mensagem de Erro               |
+      | Confirmação de E-mail  | Os e-mails não coincidem.      |
+
