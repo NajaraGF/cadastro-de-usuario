@@ -3,18 +3,21 @@ Feature: Validar o Cadastro de Usuário
   Eu quero validar o cadastro de usuário,
   Para que eu possa cadastrar um novo usuário no site Guia de Motéis
 
-  Scenario: Digitar uma senha fraca e exibir erro de validação
+  Scenario: Digitar uma senha fraca e exibir mensagem de erro
     Given que o usuário acessa a página inicial
-    When o usuário clica em "login" para acessar o formulário de cadastro
-    And no modal, o usuário clica em "Cadastre-se grátis!"
-    And o usuário preenche o campo "Nome Completo" com "Maria Souza"
-    And o usuário seleciona a opção "Feminino" em "Sexo"
-    And o usuário preenche o campo "Data de Nascimento" com "28/04/1984"
-    And o usuário preenche o campo "CEP" com "05011-000"
-    And o usuário preenche o campo "E-mail" com "maria@teste.com"
-    And o usuário preenche o campo "Confirme e-mail" com "maria@teste.com"
-    And o usuário preenche o campo "Senha" com "12345"
-    And o usuário seleciona os checkboxs de descontos, promoções e publicidade
-    And o usuário seleciona o checkbox de termos de uso e política de privacidade
+    When o usuário clica em "Cadastre-se grátis!" para acessar o formulário de cadastro
+    And o usuário preenche todos os campos obrigatórios corretamente
+      | Campo              | Valor                |
+      | Nome Completo      | Maria Souza          |
+      | Sexo               | Feminino             |
+      | Data de Nascimento | 1984-04-28           |
+      | CEP                | 05011-000            |
+      | E-mail             | maria@teste.com      |
+      | Confirmação E-mail | maria@teste.com      |
+      | Senha              | 12345               |
+      | Confirmação Senha  | 12345               |
     And o usuário clica no botão "Confirmar cadastro"
-    Then o usuário visualiza a mensagem de erro "A senha deve ter mínimo 8 caracteres, 1 letra maiúscula e 1 número"
+    Then o usuário visualiza a mensagem de erro:
+      | Campo  | Mensagem de Erro                                                                          |
+      | Senha  | A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula e um número.       |
+
