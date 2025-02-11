@@ -1,4 +1,4 @@
-## 🚀 Cadastro de Usuário - Testes Automatizados
+# 🚀 Cadastro de Usuário - Testes Automatizados
 
 Este repositório contém um formulário de cadastro de usuário e testes automatizados para validação da aplicação.
 
@@ -12,13 +12,15 @@ Este repositório contém um formulário de cadastro de usuário e testes automa
  - Postman/Newman → Testes de API
 
  - k6 → Testes de Performance
+   
 
 ## 📌 Como Rodar o Projeto Localmente
 
 1️⃣ Clone o repositório e acesse a pasta:
 
-git clone https://github.com/NajaraGF/cadastro-de-usuario.git
-cd cadastro-de-usuario
+> git clone https://github.com/NajaraGF/cadastro-de-usuario.git
+> cd cadastro-de-usuario
+
 
 ## 🚀 Como Rodar o Formulário HTML
 
@@ -62,7 +64,7 @@ Instale o http-server globalmente (se ainda não tiver):
 
 Execute o servidor:
 
-http-server
+> http-server
 
 Acesse no navegador:
 
@@ -71,45 +73,85 @@ Acesse no navegador:
 
 ## 📌 Executando os Testes Automatizados
 
-🧪 Testes End-to-End (Cypress)
+## 🧪 Testes End-to-End (Cypress)
 
-Instale as dependências:
+- Instale as dependências:
 
-> npm install
+ > npm install
 
-Abra o Cypress:
+- Abra o Cypress:
 
-> npx cypress open
+ > npx cypress open
 
-Execute os testes em:
+- Execute os testes em:
 
-> cypress/e2e/cadastrar_usuario.cy.js
+ > cypress/e2e/cadastrar_usuario.cy.js
 
 🔹 Testes de API (Postman/Newman)
 
-Importe o arquivo no Postman:
+ - Importe o arquivo no Postman:
 
-> api-tests/cadastro-api.postman_collection.json
+ > api-tests/cadastro-api.postman_collection.json
 
-Execute via Postman Runner ou via linha de comando (Newman):
+- Execute via Postman Runner ou via linha de comando (Newman):
 
-> newman run api-tests/cadastro-api.postman_collection.json
+ > newman run api-tests/cadastro-api.postman_collection.json
 
 
 ## 🚀 Testes de Performance (k6)
 
-Instale o k6:
+- Instale o k6:
 
-choco install k6  # Windows
-brew install k6   # macOS/Linux
+> choco install k6  # Windows
+> brew install k6   # macOS/Linux
 
-Execute o teste de carga:
+- Execute o teste de carga:
 
 > k6 run performance-tests/load-test.js
 
-Para gerar um relatório:
+- Para gerar um relatório:
 
 > k6 run performance-tests/load-test.js --out json=performance-tests/results.json
+
+## 📊 Relatório de Resultados dos Testes
+
+✅ Testes End-to-End (Cypress)
+
+ - Total de testes: 4
+
+ - Todos os testes passaram com sucesso ✅
+
+ - Tempo total de execução: 13s
+
+ - Nenhum erro encontrado
+
+
+✅ Testes de API (Postman/Newman)
+
+ - Total de testes executados: 4
+
+ - Status code esperados (200, 400, 500) validados corretamente
+
+ - Nenhuma falha nos endpoints
+
+ - Detalhes:
+
+    - Validação da API de Usuários → 200 OK ✅ (Tempo: 102ms)
+
+    - Criar Novo Usuário → 201 Created ✅ (Tempo: 367ms)
+
+    - Requisição Inválida → 400 Bad Request ✅ (Tempo: 699ms)
+
+    - Erro Interno do Servidor → 500 Internal Server Error ✅ (Tempo: 832ms)
+
+
+✅ Testes de Performance (k6)
+
+ - Usuários simulados: 100 concorrentes
+
+ - Tempo médio de resposta: ~31.79ms
+
+ - Nenhum erro encontrado ✅
 
 
 # 📂 Estrutura do Repositório
