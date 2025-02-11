@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "f464171c-406a-48d5-8dee-7248b0aa8445",
+		"name": "GET Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11764085"
+	},
+	"item": [
+		{
+			"name": "Validação da API de Usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status HTTP é 200\r",
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verifica se a resposta é JSON\r",
+							"pm.test(\"Resposta é JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// Valida a estrutura do JSON\r",
+							"pm.test(\"Estrutura do JSON está correta\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    jsonData.forEach(user => {\r",
+							"        pm.expect(user).to.have.property(\"id\");\r",
+							"        pm.expect(user).to.have.property(\"name\");\r",
+							"        pm.expect(user).to.have.property(\"username\");\r",
+							"        pm.expect(user).to.have.property(\"email\");\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "**GET - Validação da API de Usuários**\n\n- Verifica se a API de usuários está respondendo corretamente, validando o código de status **200 OK** e a estrutura do JSON retornado."
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Novo Usuário (Sucesso)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status HTTP é 201 (Criado)\r",
+							"pm.test(\"Status code é 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Verifica se o JSON retornado contém o ID gerado\r",
+							"pm.test(\"Resposta contém um ID\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Maria Teste\",\r\n  \"username\": \"mariasilva\",\r\n  \"email\": \"maria@teste.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "**POST - Criar Novo Usuário (Sucesso)**\n\n- Testa o envio de um usuário válido. A API deve retornar **201 Created** com um ID gerado"
+			},
+			"response": []
+		},
+		{
+			"name": "Requisição Inválida (Erro 400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status HTTP é 400\r",
+							"pm.test(\"Status code é 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"// Verifica se a resposta contém a mensagem de erro esperada\r",
+							"pm.test(\"Mensagem de erro está correta\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"error\");\r",
+							"    pm.expect(jsonData.error).to.eql(\"O campo 'email' é obrigatório\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Maria Teste\",\r\n  \"username\": \"mariasilva\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://b25c9082-9e03-4cfd-820d-19cbbaf6e58d.mock.pstmn.io/users",
+					"protocol": "https",
+					"host": [
+						"b25c9082-9e03-4cfd-820d-19cbbaf6e58d",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "### **POST - Requisição Inválida (Erro 400)**\n\n- Envia um usuário sem um campo obrigatório para testar se a API retorna **400 Bad Request** corretamente"
+			},
+			"response": []
+		},
+		{
+			"name": "Erro Interno do Servidor (500)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status HTTP é 500\r",
+							"pm.test(\"Status code é 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});\r",
+							"\r",
+							"// Verifica se a resposta contém a mensagem de erro esperada\r",
+							"pm.test(\"Mensagem de erro está correta\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"error\");\r",
+							"    pm.expect(jsonData.error).to.eql(\"Erro interno do servidor\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://d8d57082-960b-42c3-b220-bd2ab9b776e7.mock.pstmn.io/users",
+					"protocol": "https",
+					"host": [
+						"d8d57082-960b-42c3-b220-bd2ab9b776e7",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "**POST - Erro Interno do Servidor (500)**\n\n- Simula um erro interno do servidor. O retorno esperado é **500 Internal Server Error**"
+			},
+			"response": []
+		}
+	]
+}
