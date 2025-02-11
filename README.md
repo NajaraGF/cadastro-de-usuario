@@ -2,6 +2,7 @@
 
 Este repositório contém um formulário de cadastro de usuário e testes automatizados para validação da aplicação.
 
+
 📌 Tecnologias Utilizadas
 
 HTML/CSS → Interface do formulário
@@ -67,6 +68,7 @@ Acesse no navegador:
 
 http://localhost:8080
 
+
 📌 Executando os Testes Automatizados
 
 🧪 Testes End-to-End (Cypress)
@@ -93,6 +95,7 @@ Execute via Postman Runner ou via linha de comando (Newman):
 
 newman run api-tests/cadastro-api.postman_collection.json
 
+
 🚀 Testes de Performance (k6)
 
 Instale o k6:
@@ -108,6 +111,7 @@ Para gerar um relatório:
 
 k6 run performance-tests/load-test.js --out json=performance-tests/results.json
 
+
 📂 Estrutura do Repositório
 
 cadastro-de-usuario/
@@ -118,9 +122,11 @@ cadastro-de-usuario/
 ├── README.md                 # Documentação geral
 └── package.json              # Dependências do projeto
 
+
 🤝 Contribuindo
 
 Sinta-se à vontade para abrir issues e enviar pull requests com melhorias!
+
 
 📜 Licença
 
