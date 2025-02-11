@@ -1,18 +1,25 @@
-﻿# 🧪 Testes de API (Postman)
+## 🧪 Testes de API (Postman)
 
-Esta pasta contém os testes automatizados de API utilizando **Postman** e **Newman**.
+Esta pasta contém os testes automatizados de API utilizando Postman e Newman.
 
-## 📌 Como Executar os Testes
+# 📌 Como Executar os Testes
 
-### 🔹 **Executar via Postman**
-1. Abra o **Postman**
-2. Importe o arquivo de testes: api-tests/cadastro-api.postman_collection.json
-3. Rode os testes manualmente via **Postman Runner**.
+🔹 Executar via Postman
 
-### 🔹 **Executar via Linha de Comando (Newman)**
-Caso tenha o **Newman** instalado, rode:
-```sh
-newman run api-tests/cadastro-api.postman_collection.json
+Abra o Postman
 
+Importe o arquivo de testes: api-tests/cadastro-api.postman_collection.json
 
-[GET Users.postman_test_run.json](https://github.com/user-attachments/files/18743112/GET.Users.postman_test_run.json)
+Rode os testes manualmente via Postman Runner.
+
+🔹 Executar via Linha de Comando (Newman)
+
+Caso tenha o Newman instalado, rode:
+
+>newman run api-tests/cadastro-api.postman_collection.json
+
+📊 Relatório de Resultados dos Testes
+
+Os resultados dos testes automatizados podem ser encontrados no seguinte arquivo:
+
+GET Users.postman_test_run.json
