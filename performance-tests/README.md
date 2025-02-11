@@ -11,10 +11,10 @@ Windows (via Chocolatey):
 choco install k6
 
 macOS/Linux:
- sr brew install k6
+  brew install k6
 
 🔹 Rodar o Teste de Carga:
- sr k6 run performance-tests/load-test.js
+  k6 run performance-tests/load-test.js
 
 🔹 Gerar um Relatório: 
-sr k6 run performance-tests/load-test.js --out json=performance-tests/results.json
+  k6 run performance-tests/load-test.js --out json=performance-tests/results.json
