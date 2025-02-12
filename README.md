@@ -77,7 +77,7 @@ http://localhost:8080
 
 ## 📌 Executando os Testes Automatizados
 
-## 🧪 Testes End-to-End (Cypress)
+### 🧪 Testes End-to-End (Cypress)
 
 - Instale as dependências:
 ```sh
