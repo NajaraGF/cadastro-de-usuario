@@ -154,15 +154,15 @@ Sempre que houver uma atualização no repositório, os testes serão executados
 
  - Nenhuma falha nos endpoints
 
- - Detalhes:
+ ## 📌 Detalhes:
 
-    - Validação da API de Usuários → 200 OK ✅ (Tempo: 102ms)
+| Teste                          | Status              | Tempo de Execução |
+|--------------------------------|--------------------|------------------|
+| Validação da API de Usuários   | ✅ **200 OK**      | 102ms           |
+| Criar Novo Usuário             | ✅ **201 Created** | 367ms           |
+| Requisição Inválida            | ✅ **400 Bad Request** | 699ms    |
+| Erro Interno do Servidor       | ✅ **500 Internal Server Error** | 832ms |
 
-    - Criar Novo Usuário → 201 Created ✅ (Tempo: 367ms)
-
-    - Requisição Inválida → 400 Bad Request ✅ (Tempo: 699ms)
-
-    - Erro Interno do Servidor → 500 Internal Server Error ✅ (Tempo: 832ms)
 
 
 ✅ Testes de Performance (k6)
