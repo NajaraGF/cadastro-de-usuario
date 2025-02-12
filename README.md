@@ -154,6 +154,10 @@ Sempre que houver uma atualização no repositório, os testes serão executados
 
  - Nenhuma falha nos endpoints
 
+📌 Os resultados dos testes automatizados de API podem ser encontrados no seguinte arquivo:
+
+[GET Users.postman_test_run.json](https://github.com/user-attachments/files/18743144/GET.Users.postman_test_run.json)
+
  ## 📌 Detalhes:
 
 | Teste                          | Status              | Tempo de Execução |
