@@ -118,7 +118,7 @@ k6 run performance-tests/load-test.js
 k6 run performance-tests/load-test.js --out json=performance-tests/results.json
 ```
 
-##⚙️ Integração Contínua (CI) com GitHub Actions
+## ⚙️ Integração Contínua (CI) com GitHub Actions
 Este projeto utiliza GitHub Actions para rodar os testes automaticamente a cada **push** ou **pull request** na branch **main**.
 
 📌 O workflow do CI está localizado em:
