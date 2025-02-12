@@ -8,15 +8,16 @@ Esta pasta contém os testes automatizados de API utilizando Postman e Newman.
 
 Abra o Postman
 
-Importe o arquivo de testes: api-tests/cadastro-api.postman_collection.json
+**Importe o arquivo de testes:** api-tests/cadastro-api.postman_collection.json
 
 Rode os testes manualmente via Postman Runner.
 
 🔹 Executar via Linha de Comando (Newman)
 
 Caso tenha o Newman instalado, rode:
-
->newman run api-tests/cadastro-api.postman_collection.json
+```sh
+newman run api-tests/cadastro-api.postman_collection.json
+```
 
 ### 📊 Relatório de Resultados dos Testes
 
