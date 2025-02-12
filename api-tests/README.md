@@ -20,6 +20,19 @@ Caso tenha o Newman instalado, rode:
 
 ### 📊 Relatório de Resultados dos Testes
 
-Os resultados dos testes automatizados podem ser encontrados no seguinte arquivo:
+✅ Status Codes Validados:
+
+- 200 OK → Requisição bem-sucedida
+
+- 201 Created → Usuário criado com sucesso
+
+- 400 Bad Request → Requisição inválida (erro do cliente)
+
+- 500 Internal Server Error → Erro interno no servidor
+
+Esses testes garantem a confiabilidade e robustez da API, validando diferentes cenários de resposta. 🚀
+
+
+📌 Os resultados dos testes automatizados podem ser encontrados no seguinte arquivo:
 
 [GET Users.postman_test_run.json](https://github.com/user-attachments/files/18743144/GET.Users.postman_test_run.json)
